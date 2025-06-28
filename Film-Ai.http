@@ -1,0 +1,6 @@
+@Film_Ai_HostAddress = http://localhost:5289
+
+GET {{Film_Ai_HostAddress}}/swagger/
+Accept: application/json
+
+###
