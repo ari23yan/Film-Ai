@@ -21,7 +21,6 @@ namespace Film_Ai.Data.Services.Implementation
             _apiUrl = configuration["TMDb:ApiUrl"];
             _movieService = movieService;
         }
-
         public async Task<List<Movie>> GetMoviesAsync(string generId)
         {
             var url = $"{_apiUrl}{_apiKey}&with_genres=28";
@@ -38,7 +37,7 @@ namespace Film_Ai.Data.Services.Implementation
                     Poster = result["poster_path"]?.ToString() ?? "",
                     Title = result["title"]?.ToString() ?? "",
                     Description = result["overview"]?.ToString() ?? "",
-                    Description_Fa = await Translator.Translate(result["overview"]?.ToString(), Language.English, Language.Persian) ?? "",
+                    Description_Fa = await Translator.Translate(result["overview"]?.ToString()) ?? "",
                     ReleaseYear = result["release_date"]?.ToString().Split('-')[0] ?? ""
                 });
             }
