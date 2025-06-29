@@ -1,6 +1,5 @@
-﻿using Film_Ai.Models.Entities;
-using Film_Ai.Services.Implementation;
-using Film_Ai.Services.Interface;
+﻿using Film_Ai.Data.Services.Interface;
+using Film_Ai.Models.Entities;
 using Quartz;
 
 namespace Film_Ai.Jobs
@@ -25,7 +24,7 @@ namespace Film_Ai.Jobs
 
             foreach (var keyword in keywords)
             {
-                var movies = await _tmdb.SearchMoviesAsync(keyword);
+                var movies = await _tmdb.GetMoviesAsync(keyword);
                 allMovies.AddRange(movies);
             }
             await _movieService.InsertManyAsync(allMovies);

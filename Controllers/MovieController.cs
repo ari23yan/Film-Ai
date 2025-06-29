@@ -1,5 +1,5 @@
-﻿using Film_Ai.Models.Entities;
-using Film_Ai.Services.Interface;
+﻿using Film_Ai.Data.Services.Interface;
+using Film_Ai.Models.Entities;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -21,7 +21,7 @@ namespace Film_Ai.Controllers
         [Route("get-movies")]
         public async Task<ActionResult<List<Movie>>> GetList(string input)
         {
-            var movies = await _tmdb.SearchMoviesAsync("war");
+            var movies = await _tmdb.GetMoviesAsync("war");
              await _movieService.InsertManyAsync(movies);
             return Ok();
         }
